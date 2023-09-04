@@ -3,16 +3,16 @@ info:
   title: MICRO SERVICES CURD OPERATIONS
   version: '2.0'
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8882
 
 
 paths:
-  /createQuestion:
+  /createuser:
     post:
       tags:
         - user
-      description: CreateQuestion
-      operationId: CreateQuestion
+      description: Createuser
+      operationId: Createuser
       responses:
         '201':
           description: CreateQuestion Sucessfully
@@ -130,17 +130,7 @@ components:
     BODYDATA:
       type: object
       properties:
-        ques_id: 
-          type: number
-        topic_id:
-          type: number
-        question: 
+        username: 
           type: string
-        option1:
-          type: string
-        option2:
-          type: string
-        option3: 
-          type: string
-        option4:
+        password:
           type: string

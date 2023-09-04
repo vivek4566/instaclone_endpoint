@@ -368,7 +368,7 @@ export function modelApiApiResponseToJson(name: string, value: Api.ApiResponse):
 	return result
 }
 
-const ApiBODYDATAKeys: string[] = ['ques_id', 'topic_id', 'question', 'option1', 'option2', 'option3', 'option4']
+const ApiBODYDATAKeys: string[] = ['username', 'password']
 
 function modelApiBODYDATAFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.BODYDATA {
 	if (typeof value !== 'object' || value === undefined || value === null) {
@@ -378,13 +378,8 @@ function modelApiBODYDATAFromJsonContent(name: string, value: any, knownKeys: Re
 	ApiBODYDATAKeys.forEach(k => knownKeys[k] = true)
 
 	const result: Api.BODYDATA = {
-		'ques_id': allowUndefined(numberFromJson)(`${name}.ques_id`, value['ques_id']),
-		'topic_id': allowUndefined(numberFromJson)(`${name}.topic_id`, value['topic_id']),
-		'question': allowUndefined(stringFromJson)(`${name}.question`, value['question']),
-		'option1': allowUndefined(stringFromJson)(`${name}.option1`, value['option1']),
-		'option2': allowUndefined(stringFromJson)(`${name}.option2`, value['option2']),
-		'option3': allowUndefined(stringFromJson)(`${name}.option3`, value['option3']),
-		'option4': allowUndefined(stringFromJson)(`${name}.option4`, value['option4']),
+		'username': allowUndefined(stringFromJson)(`${name}.username`, value['username']),
+		'password': allowUndefined(stringFromJson)(`${name}.password`, value['password']),
 	}
 
 	return result
@@ -398,13 +393,8 @@ function modelApiBODYDATAToJsonContent(name: string, value: Api.BODYDATA, knownK
 	ApiBODYDATAKeys.forEach(k => knownKeys[k] = true)
 	
 	const result: ToJson<Api.BODYDATA> = {
-		'ques_id': allowUndefined(numberToJson)(`${name}.ques_id`, value['ques_id']),
-		'topic_id': allowUndefined(numberToJson)(`${name}.topic_id`, value['topic_id']),
-		'question': allowUndefined(stringToJson)(`${name}.question`, value['question']),
-		'option1': allowUndefined(stringToJson)(`${name}.option1`, value['option1']),
-		'option2': allowUndefined(stringToJson)(`${name}.option2`, value['option2']),
-		'option3': allowUndefined(stringToJson)(`${name}.option3`, value['option3']),
-		'option4': allowUndefined(stringToJson)(`${name}.option4`, value['option4']),
+		'username': allowUndefined(stringToJson)(`${name}.username`, value['username']),
+		'password': allowUndefined(stringToJson)(`${name}.password`, value['password']),
 	}
 
 	return result

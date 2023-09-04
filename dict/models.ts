@@ -27,21 +27,8 @@ export namespace Api {
 	}
 
 	export interface BODYDATA {
-		/**
-		 * @type {number}
-		 * @memberof BODYDATA
-		 */
-		ques_id?: number;
-		/**
-		 * @type {number}
-		 * @memberof BODYDATA
-		 */
-		topic_id?: number;
-		question?: string;
-		option1?: string;
-		option2?: string;
-		option3?: string;
-		option4?: string;
+		username?: string;
+		password?: string;
 	}
 
 }

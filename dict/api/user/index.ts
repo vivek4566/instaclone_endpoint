@@ -20,7 +20,7 @@ import { Api } from '../../models'
 
 export default function(app: Express, impl: t.UserApi) {
 	app.post(
-		'/createQuestion',
+		'/createuser',
 		function (req, res) {
 			try {
 				function __body() {
@@ -34,13 +34,13 @@ export default function(app: Express, impl: t.UserApi) {
 					throw new Error(`Invalid request content type: ${__contentType}`)
 				}
 
-				impl.createQuestion(__body()).then(function (response) {
+				impl.createuser(__body()).then(function (response) {
 					if (response.status === 201) {
 						let body: any
 						try {
 							body = v.modelApiApiResponseToJson('response', response.body)
 						} catch (error) {
-							console.error('Invalid response body in user.createQuestion', error)
+							console.error('Invalid response body in user.createuser', error)
 							res.status(500)
 							res.send()
 							return
@@ -55,7 +55,7 @@ export default function(app: Express, impl: t.UserApi) {
 						try {
 							body = v.modelApiApiResponseToJson('response', response.body)
 						} catch (error) {
-							console.error('Invalid response body in user.createQuestion', error)
+							console.error('Invalid response body in user.createuser', error)
 							res.status(500)
 							res.send()
 							return
@@ -66,11 +66,11 @@ export default function(app: Express, impl: t.UserApi) {
 						return
 					}
 
-					console.log('Unsupported response in user.createQuestion', response)
+					console.log('Unsupported response in user.createuser', response)
 					res.status(500)
 					res.send()
 				}).catch(function (error) {
-					console.error('Unexpected error in user.createQuestion', error.stack || error)
+					console.error('Unexpected error in user.createuser', error.stack || error)
 					res.status(500)
 					res.send()
 				})

@@ -2,13 +2,13 @@
 
 ## Operations
 
-### createQuestion
+### createuser
 
 ```http
-POST /createQuestion
+POST /createuser
 ```
 
-CreateQuestion
+Createuser
 
 ### deleteQuestion
 
@@ -40,7 +40,7 @@ This is an example of the API implementation to use to update the actual API imp
 when the API structure has changed.
 
 ```typescript
-async function createQuestion(request: Api.BODYDATA | undefined): Promise<t.CreateQuestionResponse> {
+async function createuser(request: Api.BODYDATA | undefined): Promise<t.CreateuserResponse> {
 	throw 'Unimplemented'
 }
 
@@ -58,7 +58,7 @@ async function updateQuestion(quesId: number, request: Api.BODYDATA | undefined)
 
 
 const api: t.UserApi = {
-	createQuestion,
+	createuser,
 	deleteQuestion,
 	getQuestion,
 	updateQuestion,

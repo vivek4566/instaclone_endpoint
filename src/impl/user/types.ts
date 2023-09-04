@@ -1,22 +1,26 @@
-import {DeleteQuestionResponse,GetQuestionResponse, UpdateQuestionResponse, UserApi, CreateQuestionResponse} from "../../../dict/api/user/types";
+import { response } from "express";
+import { CreateuserResponse,DeleteQuestionResponse,UpdateQuestionResponse,GetQuestionResponse, UserApi} from "../../../dict/api/user/types";
 import { Api } from "../../../dict/models";
 import {collections} from '../../../src/admin/types'
 
 
 
+
+
 export class UserApiImpl implements UserApi {
+ 
     getQuestion(): Promise<GetQuestionResponse>  {
         return new Promise<GetQuestionResponse>((resolve,reject)=>{
             collections.users!.find({}).toArray(function (err: any,result:any){
                 if(err) {
                     const response=<GetQuestionResponse>{
-                        status: 400,
-                       body:{message: `something went wrong`},
+                        status:400,
+                        body:{message:`User Already Created`}
                     }
                     resolve(response)                   
                 }
-                const response=<GetQuestionResponse>{
-                    status:201,
+                const response=<GetQuestionResponse><unknown>{
+                    status: 200,
                     body: result
                 }
                 resolve(response)    
@@ -31,15 +35,13 @@ deleteQuestion(ques_id:number):Promise<DeleteQuestionResponse>{
                 if(err){
                     const response=<DeleteQuestionResponse>{
                         status:400,
-                        body:{message:`someting went wrong`}
+                        body:{message:`User Already Created`}
                     }
                     resolve(response)
                 }
                 const response=<DeleteQuestionResponse>{
-                   status:201,
-                    body:{
-                        message:`delete Question Sucessfully`
-                    }
+                    status:201,
+                    body:{message:`Create Answer Sucessfuly`}
                 }
                 resolve(response)
             }
@@ -56,14 +58,14 @@ deleteQuestion(ques_id:number):Promise<DeleteQuestionResponse>{
             function(err:any,result: any){
                 if(err){
                     const response=<UpdateQuestionResponse>{
-                        status: 400,
-                        body:{message:`Somting Went Wrong`}
+                        status:400,
+                        body:{message:`User Already Created`}
                     }
                     resolve(response)
                 }
                 const response=<UpdateQuestionResponse>{
                     status:201,
-                    body:{message:`Update Question Sucessfully`}
+                    body:{message:`Create Answer Sucessfuly`}
                 }
                 resolve(response)
                
@@ -72,14 +74,14 @@ deleteQuestion(ques_id:number):Promise<DeleteQuestionResponse>{
 
     })
  }
- createQuestion(request: Api.BODYDATA | undefined): Promise<CreateQuestionResponse>
+createuser(request: Api.BODYDATA | undefined): Promise<CreateuserResponse>
  {
-    return new Promise<UpdateQuestionResponse>((resolve,reject)=>{
+    return new Promise<CreateuserResponse>((resolve,reject)=>{
         collections.users!.findOne(
-            {ques_id:request?.ques_id},
+            {username:request?.username},
             function(err:any,result:any){
                 if(result){
-                    const response=<UpdateQuestionResponse>{
+                    const response=<CreateuserResponse>{
                         status:400,
                         body:{message:`User Already Created`}
                     }
@@ -87,19 +89,19 @@ deleteQuestion(ques_id:number):Promise<DeleteQuestionResponse>{
                 }
                 else{
                     collections.users!.insertOne(
-                        {ques_id:request?.ques_id,topic_id:request?.topic_id,question:request?.question,option1:request?.option1,option2:request?.option2,option3:request?.option3,option4:request?.option4},
+                        {username:request?.username,password:request?.password},
                         function(err:any,result:any){
                           if(err){
-                            const response=<UpdateQuestionResponse>{
+                            const response=<CreateuserResponse>{
                                 status:400,
                                 body:{message:`Someting Went Wrong`}
                             }
                             resolve(response)
                           }
                           else{
-                            const response=<UpdateQuestionResponse>{
+                            const response=<CreateuserResponse>{
                                 status:201,
-                                body:{message:`Create Question Sucessfuly`}
+                                body:{message:`Create Answer Sucessfuly`}
                             }
                             resolve(response)
                           }
@@ -109,7 +111,8 @@ deleteQuestion(ques_id:number):Promise<DeleteQuestionResponse>{
                     )
                 }
             }
-        )
-    })
- }
+        )
+    })
+ }
+
 }

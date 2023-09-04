@@ -16,21 +16,21 @@ import { Express } from 'express'
 import { Api } from '../../models'
 
 export interface UserApi {
-	createQuestion: (request: Api.BODYDATA | undefined) => Promise<CreateQuestionResponse>
+	createuser: (request: Api.BODYDATA | undefined) => Promise<CreateuserResponse>
 	deleteQuestion: (quesId: number) => Promise<DeleteQuestionResponse>
 	getQuestion: () => Promise<GetQuestionResponse>
 	updateQuestion: (quesId: number, request: Api.BODYDATA | undefined) => Promise<UpdateQuestionResponse>
 }
 
-export type CreateQuestionResponse = CreateQuestion201Response | CreateQuestion400Response
+export type CreateuserResponse = Createuser201Response | Createuser400Response
 
-export interface CreateQuestion201Response {
+export interface Createuser201Response {
 	status: 201
 	body: Api.ApiResponse
 	headers?: never
 }
 
-export interface CreateQuestion400Response {
+export interface Createuser400Response {
 	status: 400
 	body: Api.ApiResponse
 	headers?: never
